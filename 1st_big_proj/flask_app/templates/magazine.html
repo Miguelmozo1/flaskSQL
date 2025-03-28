@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Details</title>
+    <style>
+        .top-nav {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-nav">
+        <h1>Welcome, {{ user.first_name }}</h1>
+        <div class="links">
+            <a href="/magazine/new">Add Magazine</a>
+            <a href="/user/{{  magazine.user_id  }}/edit">Account</a>
+            <a href="/logout">Logout</a>
+        </div>
+    </div>
+    <h1> {{ magazine.title }} </h1>
+    <div class="magazine_info">
+        <p>Added by User: {{ magazine.user_id }}  </p>
+        <p>Description:</p>
+        <p> {{ magazine.description }} </p>
+    </div>
+</body>
+</html>

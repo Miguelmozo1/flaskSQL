@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        .top-nav {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .magazines_display {
+            border: 2px solid black;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-nav">
+        <h1>Welcome, {{ user.first_name }}</h1>
+        <div class="links">
+            <a href="/magazine/new">Add Magazine</a>
+            <a href="/user/{{user.id}}/edit">Account</a>
+            <a href="/logout">Logout</a>
+        </div>
+    </div>
+    <h1>Magazines</h1>
+    <div class="magazines_display">
+        {% for magazine in magazines %}
+        <div class="magazine">
+            <p><a href="/magazine/{{magazine.id}}">{{ magazine.title }}</a></p>
+            <p>Added by {{ magazine.creator.first_name }}</p>
+        </div>
+        {% endfor %}
+</body>
+</html>

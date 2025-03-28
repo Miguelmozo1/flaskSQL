@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update</title>
+    <style>
+        .top-nav {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .container {
+            height: 500px;
+            display: flex;
+        }
+        .col {
+            flex: 2;
+            text-align: center;
+        }
+        #update {
+            display: flex;
+            flex-direction: column;
+        }
+        .magazine {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-nav">
+        <h1>Welcome, {{user.first_name}}</h1>
+        <div class="links">
+            <a href="/magazine/new">Add Magazine</a>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/logout">Logout</a>
+        </div>
+    </div>
+    <div class="container">
+        <div class="col">
+            <h1>Update {{user.first_name}}</h1>
+            <form action="/user/{{user.id}}/edit" method="post" id="update">
+                <label for="first_name">First Name:</label>
+                <input type="text" name="first_name">
+                <label for="last_name">Last Name:</label>
+                <input type="text" name="last_name">
+                <label for="email">Email:</label>
+                <input type="text" name="email">
+                <button>Update</button>
+            </form>
+        </div>
+        <div class="col">
+            <h1>{{user.first_name}}'s' Magazines</h1>
+            {% for magazine in magazines %}
+                {% if session['user_id'] == magazine.user_id %}
+                <div class="magazine">
+                    <p><a href="/magazine/{{magazine.id}}">{{ magazine.title }}</a> | </p>
+                    <p>Added by {{ magazine.creator.first_name }} | </p>
+                    <p> <a href="/magazine/{{ magazine.id }}/delete">  delete</a> </p>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
