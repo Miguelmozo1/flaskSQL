@@ -1,0 +1,88 @@
+// when using a button to submit a form, that by default requests a GET post from the url and redirects us essentially.
+    // This is not ideal when using AJAX since again, it needs not the page to be refreshed to display new info
+
+// This is the html syntax for the form
+
+{/* <form  id="myForm" method="post">
+    <label for="name">Name: </label>
+    <input type="text" name="name">
+    <input type="submit" id="submit_btn" value="Submit">
+</form> */}
+
+// This is the code in js
+
+<script>
+    var myForm = document.getElementById('myForm');
+    myForm.onsubmit = function(e){
+        // "e" is the js event happening when we submit the form.
+        // e.preventDefault() is a method that stops the default nature of javascript.
+        e.preventDefault();
+        // create FormData object from javascript and send it through a fetch post request.
+            // also is used to ensure that our server interprets the data correctly, as in an instance
+        var form = new FormData(myForm);
+        // this how we set up a post request and send the form data.
+        fetch("http://localhost:5000/create/user", { method :'POST', body : form})
+            .then( response => response.json() )
+            .then( data => console.log(data) )
+    }
+</script>
+
+
+// this would be done in a controllers file
+
+from flask_app.models.user import User
+from flask_app import app
+from flask import render_template, jsonify, request, redirect
+@app.route('/create/user',methods=['POST'])
+def create_user():
+    print(request.form)
+    # write code to save it to our database . . .
+    return jsonify(message="Add a user!!!")
+
+
+
+
+
+
+// now that api key has been generated and acquired
+
+#1
+In terminal, "pipenv install requests"
+#2: somewhere in a controller file
+import requests
+from flask_app import app
+import os
+from flask import jsonify
+@app.route('/searching'):
+    r = requests.get(f"https:api.information.com/{os.environ.get('FLASK_API_KEY')}")
+    # we must keep in line with JSON format.
+    # requests has a method to convert the data coming back into JSON.
+    return jsonify( r.json() )
+#3: front-end part of it
+<form id="searchForm" onsubmit="search(event)" >
+    <h2>Search</h2>
+    <input type="text" name="query">
+    <input type="submit" value="Search" >
+</form>
+#4 in our .js
+function search(e){
+    e.preventDefault();
+    var searchForm = document.getElementById('searchForm')
+    var form = new FormData(searchForm);
+    fetch('http://localhost:5000/search',{method:'POST',body:form})
+        .then(res => res.json() )
+        .then( data => console.log(data) )
+}
+#5: in a controller file
+import requests
+from flask_app import app
+import os
+from flask import jsonify, requests
+@app.route('/searching',methods=['POST']):
+    print(request.form['query'])
+    # now we inject the query into our string
+    r = requests.get(f"https:api.information.com/{os.environ.get('FLASK_API_KEY')}/search?={request.form['query']}")
+    # we must keep in line with JSON format.
+    # requests has a method to convert the data coming back into JSON.
+    return jsonify( r.json() )
+
