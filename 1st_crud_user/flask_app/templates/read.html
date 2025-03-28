@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users</title>
+    <link rel="stylesheet" href="static/read_all.css">
+</head>
+<body>
+    <div class="card">
+        <a href="/add">Add User</a>
+        <table>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Actions</th>
+            {% for user in users %}
+            <tr>
+                <td>{{ user["first_name"] }}</td>
+                <td>{{ user["last_name"] }}</td>
+                <td>{{ user["email"] }}</td>
+                <td><a href="/user/{{ user.id }}">Show</a>|<a href="/edit/user/{{ user.id }}"> Edit</a>|<a href="/delete/user/{{ user.id }}"> Delete</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+</html>

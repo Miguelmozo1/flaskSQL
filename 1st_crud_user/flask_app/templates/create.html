@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create User</title>
+    <link rel="stylesheet" href="static/add.css">
+</head>
+<body>
+    <form action="/create" method="post" class="card">
+        <h1>Add User</h1>
+        <label for="f_name">First Name:</label>
+        <input type="text" name="first_name" id="f_name">
+        <label for="l_name">Last Name:</label>
+        <input type="text" name="last_name" id="l_name">
+        <label for="email">Email:</label>
+        <input type="text" name="email" id="email">
+        <button>Add</button>   <!-- previously had a tag sent to /create or /users. That never saved form and btn does now -->
+        <a href="/users">Home</a>
+    </form>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit</title>
+    <style>
+        * {
+    margin: 0px;
+    padding: 0px;
+}
+
+.card {
+    margin: 0px auto;
+    width: 950px;
+    height: 450px;
+    background-color: gainsboro;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+    </style>
+</head>
+<body>
+    <form action="/edit/user" method="post" class="card">
+        <h1>Edit User {{ user["first_name"] }}</h1>
+        <input type="hidden" name="id" value="{{ user.id }}">
+        <label for="first_name">First Name: </label>
+        <input type="text" name="first_name" value="{{ user.first_name }}">
+        <label for="l_name">Last Name: </label>
+        <input type="text" name="last_name" value="{{ user.last_name }}">
+        <label for="email">Email: </label>
+        <input type="text" name="email" value="{{ user.email }}">
+        <input type="submit" value="Update">
+        <a href="/users">Home</a>
+    </form>
+</body>
+</html>
