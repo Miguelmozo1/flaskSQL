@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Share</title>
+</head>
+<body>
+    <div class="welcome-nav">
+        <h1>Welcome {{ recipe.user.first_name }}</h1>
+        <ul>
+            <li><a href="/welcome">back to recipes</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </div>
+    <div class="recipe-nav">
+        <h1>{{ recipe.name }}</h1>
+        <h3>Posted by: {{ recipe.user.first_name }}</h3>
+    </div>
+    <div class="recipe-info">
+        <div class="info-flex">
+            <p>Description:</p>
+            <p>{{ recipe.description }}</p>
+        </div>
+        <div class="info-flex">
+            <p>Under 30 Minutes?</p>
+            <p>{{% if recipe.under30: %}}
+                    Yes
+                {% else %}
+                    No
+                {% endif %}
+            </p>
+        </div>
+        <div class="info-flex">
+            <p>Instructions:</p>
+            <p>{{ recipe.instructions }}</p>
+        </div>
+        <div class="info-flex">
+            <p>Date Made:</p>
+            <p>{{ recipe.date_made }}</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Recipe</title>
+</head>
+<body>
+    <div class="top-nav">
+        <h1>Add a New Recipe</h1>
+        <ul>
+            <li><a href="/welcome">back to recipes</a></li>
+            <li><a href="/logout">Logout</a></li>
+        </ul>
+    </div>
+    <form action="/recipes/create", method='post'>
+        <div class="container">
+            <div class="col">
+                <div class="form-labels">
+                    <label for="name">Name</label>
+                    <input type="text" name="name">
+                </div>
+                <div class="form-labels">
+                    <label for="description">Description</label>
+                    <textarea name="description" cols="30" rows="10"></textarea>
+                </div>
+                <div class="form-labels">
+                    <label for="instructions">Instructions</label>
+                    <textarea name="instructions" cols="30" rows="10"></textarea>
+            </div>
+            <div class="col">
+                <div class="form-labels">
+                    <label for="date_made">Date Cooked/Made</label>
+                    <input type="date" name="date_made">
+                </div>
+            </div>
+            <div class="col">
+                <p>Under 30 Minutes?</p>
+                <label for="yes">Yes</label>
+                <input type="radio" name="under30" value="1">
+                <label for="no">No</label>
+                <input type="radio" name="under30" value="0">
+            </div>
+            <input type="hidden" name="user_id" value="{{user.id}}">
+        </div>
+        <button>Submit</button>
+    </form>
+</body>
+</html>
