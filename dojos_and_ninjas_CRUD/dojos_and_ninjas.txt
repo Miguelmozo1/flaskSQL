@@ -1,0 +1,54 @@
+INSERT INTO dojos (name)                             // this is setting up a new table with values. Where dojos is name of tables
+VALUES ("California"), ("Colorado"), ("online");        and values are stored under "name", a column/row in the table already made
+
+
+
+DELETE FROM dojos                                   // Goes and deletes the three values we had just placed in the table
+WHERE id <= 3;
+
+
+
+INSERT INTO dojos (name)
+VALUES ("California"), ("Colorado"), ("Online");
+
+
+
+// Adds a set of students into the California row since the id given to it was 4, and the foreign key id given to students is 4, relating
+    strictly to dojo id = 4 == California
+INSERT INTO ninjas (dojo_id, first_name, last_name, age)
+VALUES (4, "Adam", "Angler", 22), (4, "Bob", "Barler", 34), (4, "Cash", "Carr",25);
+
+
+
+INSERT INTO ninjas (dojo_id, first_name, last_name, age)
+VALUES (5, "Daniel", "Doubri", 44), (5, "Edward", "Euler", 27), (5, "Fallon", "Faulkner", 33);
+
+
+INSERT INTO ninjas (dojo_id, first_name, last_name, age)
+VALUES (6, "Miguel", "Mozo", 22), (6, "Gary", "Game", 34), (6, "Harry", "Hume", 78);
+
+
+
+// selects all ninjas from the California dojo and displays all their info
+SELECT * FROM ninjas
+WHERE dojo_id = 4;
+
+
+
+SELECT * FROM ninjas
+WHERE dojo_id = 6;
+
+
+    // selecting last ninja's dojo? Prints out dojo_id, but not name?
+SELECT dojo_id FROM ninjas
+WHERE id = 12
+
+
+    // using join to get ninja with id = 6 and data from respected dojo
+SELECT * FROM dojos
+JOIN ninjas ON dojos.id = ninjas.dojo_id
+where ninjas.id = 6
+
+// joining all ninjas and their respected dojo, shows duplicates, but dojos can have many ninjas
+SELECT * FROM ninjas
+JOIN dojos ON dojo_id = ninjas.dojo_id;

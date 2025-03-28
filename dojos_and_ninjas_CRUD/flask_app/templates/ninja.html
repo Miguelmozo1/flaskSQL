@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Ninja</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+</head>
+<body>
+    <a href="/dojos">Home</a>
+    <form action="/create/ninja" method="post">
+        <h1>New Ninja</h1>
+        <label for="dojo">Dojo</label>
+        <select name="dojo_id" >
+            {% for d in dojos%}
+            <option value="{{ d.id }}">{{ d.name }}</option>
+            {% endfor %}
+        </select>
+        <label for="first_name">First Name: </label>
+        <input type="text" name="first_name">
+        <label for="last_name">Last Name: </label>
+        <input type="text" name="last_name">
+        <label for="age">Age: </label>
+        <input type="text" name="age">
+        <button>Create</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <title>Edit</title>
+</head>
+<body>
+    <header>
+        <h1>Edit Ninja</h1>
+    </header>
+    <form action="/update/ninja/{{ ninja.id }}" method="post">
+        <div class="form-control">
+            <label for="first_name">First Name:</label>
+            <input type="text" name="first_name" value="{{ ninja.first_name }}">
+        </div>
+        <div class="form-control">
+            <label for="last_name">Last Name:</label>
+            <input type="text" name="last_name" value="{{ ninja.last_name }}">
+        </div>
+        <div class="form-control">
+            <label for="age">Age:</label>
+            <input type="text" name="age" value="{{ ninja.age }}">
+        </div>
+        
+        <button>Update</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dojos</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+</head>
+<body>
+    <div class="container">
+        <form action="/new/dojo", method="post" class="new_dojo">
+            <h1>New Dojo</h1>
+            <label for="name">Name: </label>
+            <input type="text" name="name">
+            <button>Create</button>
+        </form>
+        <div class="">
+            <a href="/new/ninja">Add Ninja</a>
+            <h1>All Dojos</h1>
+            <ul>
+                {% for d in all_dojos %}
+                <li><a href="/dojo/{{ d.id }}">{{ d.name }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
