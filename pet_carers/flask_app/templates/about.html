@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <title>About</title>
+</head>
+<body>
+    <div class="container py-5 h-100">
+        <h3><a href="/" class="link-primary">Home</a></h3>
+        <div class="row d-flex justify-content-center align-items-center h-100">
+          <div class="col col-xl-10">
+            <div class="card mb-5" style="border-radius: 15px;">
+              <div class="card-body p-4">
+                <h3 class="mb-3">{{ carer.first_name }} {{ carer.last_name }} | {{ carer.age }}</h3>
+                <p class="small mb-0"><i class="far fa-star fa-lg"></i> <span class="mx-2">|</span> Years Of Experience
+                  <strong>{{ carer.years_active }}</strong></p>
+                <hr class="my-4">
+                <div class="d-flex justify-content-start align-items-center">
+                  <p class="mb-0 text-uppercase"><i class="fas fa-cog me-2"></i> <span
+                      class="text-muted small">Favorite Animal: {{ carer.favorite_animal }}</span></p>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

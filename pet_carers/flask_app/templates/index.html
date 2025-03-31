@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <title>Main</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1 class="display-4">New Caregiver</h1>
+                <form action="/create/carer" method="POST">
+                    <div class="form-control">
+                        <label>First Name:</label>
+                        <input type="text" name="first_name">
+                    </div>
+                    <div class="form-control">
+                        <label>Last Name:</label>
+                        <input type="text" name="last_name">
+                    </div>
+                    <div class="form-control">
+                        <label>Age:</label>
+                        <input type="text" name="age">
+                    </div>
+                    <div class="form-control">
+                        <label>Favorite Animal:</label>
+                        <input type="text" name="favorite_animal">
+                    </div>
+                    <div class="form-control">
+                        <label>Years Active:</label>
+                        <input type="text" name="years_active">
+                    </div>
+                    <button class="btn btn-primary">Add to List</button>
+                </form>
+            </div>
+            <div class="col">
+                <ul class="list-group list-group-light">
+                <li class="list-group-item px-3 border-0 active" aria-current="true">
+                    <h1>Our Caregivers</h1>
+                </li>
+                    {% for carer in carers %}
+                        <li class="list-group-item px-3 border-1"><a href="/carer/{{ carer.id }}">{{carer.first_name}} {{carer.last_name}}</a> | <a href="/about/{{ carer.id }}">About</a> | <a href="/delete/{{ carer.id }}">Delete</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        <div class="row">
+            <form action="/create/pet" method="POST">
+                <h1 class="display-4">Input Pet Info</h1>
+                <div class="form-control">
+                    <label>Name:</label>
+                    <input type="text" name="name">
+                </div>
+                <div class="form-control">
+                    <label>Classificatioin:</label>
+                    <input type="text" name="classification">
+                </div>
+                <div class="form-control">
+                    <label>Age:</label>
+                    <input type="text" name="age">
+                </div>
+                <div class="form-control">
+                    <label>Favorite Toy:</label>
+                    <input type="text" name="favorite_toy">
+                </div>
+                <div class="form-control">
+                    <label>Desired Care Giver:</label>
+                    <select name="caregiver_id">
+                        <option value="none"></option>
+                        {% for carer in carers %}
+                            <option value="{{ carer.id }}">{{ carer.first_name }} {{ carer.last_name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <button class="btn btn-primary">Add Client</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

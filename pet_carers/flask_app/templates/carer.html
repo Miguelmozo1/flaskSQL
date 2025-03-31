@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <title>Carer</title>
+</head>
+<body>
+    <div class="container">
+        <h1><a href="/">Home</a></h1>
+        <h1>{{ carer.first_name }} {{ carer.last_name }}'s clients</h1>
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Classification</th>
+                    <th scope="col">Age</th>
+                    <th scope="col">Favorite Toy</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for pet in carer.pets %}
+                <tr>
+                    <td>{{ pet.name }}</td>
+                    <td>{{ pet.classification }}</td>
+                    <td>{{ pet.age }}</td>
+                    <td>{{ pet.favorite_toy }}</td>
+                </tr>
+                {% endfor %}
+        </tbody>
+        </table>
+    </div>
+</body>
+</html>
